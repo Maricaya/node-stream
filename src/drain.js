@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-function writeOneMillionTimes(writer, data, encoding, callback) {
+function writeOneMillionTimes(writer, data) {
   let i = 1000000;
   write();
 
@@ -10,11 +10,11 @@ function writeOneMillionTimes(writer, data, encoding, callback) {
       i--;
       if (i === 0) {
         // Last time!
-        writer.write(data, encoding, callback);
+        writer.write(data);
       } else {
         // See if we should continue, or wait.
         // Don't pass the callback, because we're not done yet.
-        ok = writer.write(data, encoding);
+        ok = writer.write(data);
         if (ok === false) {
           console.log('不能再写了')
         }
@@ -31,5 +31,5 @@ function writeOneMillionTimes(writer, data, encoding, callback) {
   }
 }
 
-const write = fs.createWriteStream('./big_file.txt')
+const write = fs.createWriteStream('./../big_file.txt')
 writeOneMillionTimes(write, 'hello world')
